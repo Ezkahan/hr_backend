@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Containers\AppSection\Company\Tasks;
+namespace App\Containers\AppSection\Location\Tasks;
 
-use App\Containers\AppSection\Company\Data\Repositories\CompanyRepository;
+use App\Containers\AppSection\Location\Data\Repositories\AreaRepository;
 use App\Ship\Exceptions\CreateResourceFailedException;
 use App\Ship\Parents\Tasks\Task;
 use Exception;
 
-class CreateCompanyTask extends Task
+class CreateAreaTask extends Task
 {
-    protected CompanyRepository $repository;
+    protected AreaRepository $repository;
 
-    public function __construct(CompanyRepository $repository)
+    public function __construct(AreaRepository $repository)
     {
         $this->repository = $repository;
     }

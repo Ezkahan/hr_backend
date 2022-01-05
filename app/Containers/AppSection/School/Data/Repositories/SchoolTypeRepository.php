@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Containers\AppSection\Location\Data\Repositories;
+namespace App\Containers\AppSection\School\Data\Repositories;
 
 use App\Ship\Parents\Repositories\Repository;
 
-class LocationRepository extends Repository
+class SchoolTypeRepository extends Repository
 {
     /**
      * @var array

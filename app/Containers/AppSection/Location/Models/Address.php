@@ -41,4 +41,19 @@ class Address extends Model
      * A resource key to be used in the serialized responses.
      */
     protected string $resourceKey = 'Address';
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    public function area()
+    {
+        return $this->belongsTo(Area::class);
+    }
+
+    public function town()
+    {
+        return $this->belongsTo(Town::class);
+    }
 }

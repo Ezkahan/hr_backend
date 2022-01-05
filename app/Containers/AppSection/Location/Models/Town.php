@@ -33,4 +33,9 @@ class Town extends Model
      * A resource key to be used in the serialized responses.
      */
     protected string $resourceKey = 'Town';
+
+    public function area()
+    {
+        return $this->belongsTo(Area::class);
+    }
 }

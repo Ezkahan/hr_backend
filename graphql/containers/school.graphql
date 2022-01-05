@@ -1,0 +1,14 @@
+extend type Query {
+    schools(orderBy: _ @orderBy(columns: ["id"])): [School!]! @paginate
+}
+
+type School {
+    id: ID
+    name: String
+    schoolType: SchoolType!
+}
+
+type SchoolType {
+    id: ID!
+    name: String!
+}

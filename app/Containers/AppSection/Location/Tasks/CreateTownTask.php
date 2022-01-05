@@ -2,16 +2,16 @@
 
 namespace App\Containers\AppSection\Location\Tasks;
 
-use App\Containers\AppSection\Location\Data\Repositories\LocationRepository;
+use App\Containers\AppSection\Location\Data\Repositories\TownRepository;
 use App\Ship\Exceptions\CreateResourceFailedException;
 use App\Ship\Parents\Tasks\Task;
 use Exception;
 
-class CreateLocationTask extends Task
+class CreateTownTask extends Task
 {
-    protected LocationRepository $repository;
+    protected TownRepository $repository;
 
-    public function __construct(LocationRepository $repository)
+    public function __construct(TownRepository $repository)
     {
         $this->repository = $repository;
     }

@@ -1,0 +1,7 @@
+extend type Query {
+    vacancies(orderBy: _ @orderBy(columns: ["id"])): [Vacancy!]! @paginate
+}
+
+type Vacancy {
+    id: ID!
+}

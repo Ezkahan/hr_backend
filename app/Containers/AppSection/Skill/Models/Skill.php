@@ -33,4 +33,9 @@ class Skill extends Model
      * A resource key to be used in the serialized responses.
      */
     protected string $resourceKey = 'Skill';
+
+    public function skillType()
+    {
+        return $this->belongsTo(SkillType::class);
+    }
 }

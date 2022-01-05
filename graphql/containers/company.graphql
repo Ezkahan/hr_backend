@@ -1,0 +1,16 @@
+extend type Query {
+    companies(orderBy: _ @orderBy(columns: ["id"])): [Company!]! @paginate
+    company(id: ID @eq): Company @find
+}
+
+type Company {
+    id: ID
+    name: String
+    description: String
+    status: String
+    phone: String
+    fax: String
+    email: String
+    website: String
+    company_type_id: String
+}

@@ -4,14 +4,11 @@ namespace App\Containers\AppSection\School\Models;
 
 use App\Ship\Parents\Models\Model;
 
-class School extends Model
+class SchoolType extends Model
 {
     public $translatable = ['name'];
 
-    protected $fillable = [
-        'name',
-        'school_type_id',
-    ];
+    protected $fillable = ['name'];
 
     protected $attributes = [];
 
@@ -29,10 +26,10 @@ class School extends Model
     /**
      * A resource key to be used in the serialized responses.
      */
-    protected string $resourceKey = 'School';
+    protected string $resourceKey = 'SchoolType';
 
-    public function schoolType()
+    public function schools()
     {
-        return $this->belongsTo(SchoolType::class);
+        return $this->hasMany(School::class);
     }
 }

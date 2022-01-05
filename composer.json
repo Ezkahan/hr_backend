@@ -42,6 +42,8 @@
         "guzzlehttp/guzzle": "^7.3.0",
         "laravel/framework": "^8.73.0",
         "laravel/tinker": "^2.6.0",
+        "mll-lab/laravel-graphql-playground": "^2.5",
+        "nuwave/lighthouse": "^5.33",
         "spatie/laravel-translatable": "^5.1",
         "wikimedia/composer-merge-plugin": "^2.0.1"
     },

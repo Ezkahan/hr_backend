@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Containers\AppSection\Company\Tasks;
+namespace App\Containers\AppSection\School\Tasks;
 
-use App\Containers\AppSection\Company\Data\Repositories\CompanyRepository;
+use App\Containers\AppSection\School\Data\Repositories\SchoolTypeRepository;
 use App\Ship\Exceptions\CreateResourceFailedException;
 use App\Ship\Parents\Tasks\Task;
 use Exception;
 
-class CreateCompanyTask extends Task
+class CreateSchoolTypeTask extends Task
 {
-    protected CompanyRepository $repository;
+    protected SchoolTypeRepository $repository;
 
-    public function __construct(CompanyRepository $repository)
+    public function __construct(SchoolTypeRepository $repository)
     {
         $this->repository = $repository;
     }
@@ -20,7 +20,8 @@ class CreateCompanyTask extends Task
     {
         try {
             return $this->repository->create($data);
-        } catch (Exception $exception) {
+        }
+        catch (Exception $exception) {
             throw new CreateResourceFailedException();
         }
     }

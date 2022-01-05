@@ -6,21 +6,13 @@ use App\Ship\Parents\Models\Model;
 
 class People extends Model
 {
-    protected $fillable = [
+    protected $fillable = [];
 
-    ];
+    protected $attributes = [];
 
-    protected $attributes = [
+    protected $hidden = [];
 
-    ];
-
-    protected $hidden = [
-
-    ];
-
-    protected $casts = [
-
-    ];
+    protected $casts = [];
 
     protected $dates = [
         'created_at',

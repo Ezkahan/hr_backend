@@ -1,0 +1,15 @@
+extend type Query {
+    skills(orderBy: _ @orderBy(columns: ["id"])): [Skill!]! @paginate
+}
+
+type Skill {
+    id: ID!
+    name: String!
+    skillType: SkillType @belongsTo
+}
+
+type SkillType {
+    id: ID!
+    code: String!
+    name: String!
+}

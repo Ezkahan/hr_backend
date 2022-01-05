@@ -33,4 +33,9 @@ class Area extends Model
      * A resource key to be used in the serialized responses.
      */
     protected string $resourceKey = 'Area';
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
 }

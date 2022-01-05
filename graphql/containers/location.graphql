@@ -1,0 +1,37 @@
+extend type Query {
+    countries(orderBy: _ @orderBy(columns: ["id"])): [Country!]! @paginate
+    areas(orderBy: _ @orderBy(columns: ["id"])): [Area!]! @paginate
+    towns(orderBy: _ @orderBy(columns: ["id"])): [Town!]! @paginate
+}
+
+type Country {
+    id: ID!
+    name: String!
+}
+
+type Area {
+    id: ID!
+    name: String!
+    country: Country @belongsTo
+}
+
+type Town {
+    id: ID!
+    name: String!
+    area: Area @belongsTo
+}
+
+type Address {
+    id: ID!
+    address: String
+    district: String
+    status: String
+    country: Country @belongsTo
+    town: Town @belongsTo
+    area: Area @belongsTo
+}
+
+type AddressType {
+    id: ID!
+    name: String
+}
