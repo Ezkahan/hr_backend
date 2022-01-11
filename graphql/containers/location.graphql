@@ -2,6 +2,7 @@ extend type Query {
     countries(orderBy: _ @orderBy(columns: ["id"])): [Country!]! @paginate
     areas(orderBy: _ @orderBy(columns: ["id"])): [Area!]! @paginate
     towns(orderBy: _ @orderBy(columns: ["id"])): [Town!]! @paginate
+    addresses(orderBy: _ @orderBy(columns: ["id"])): [Address!]! @paginate
 }
 
 type Country {

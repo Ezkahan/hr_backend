@@ -16,6 +16,9 @@ type Mutation {
         company_type_id: ID!
     ): Company
         @field(resolver: "App\\GraphQL\\Mutations\\CompanyMutator@create")
+
+    searchCompany(name: String): Company
+        @field(resolver: "App\\GraphQL\\Mutations\\CompanyMutator@search")
 }
 
 type Company {
