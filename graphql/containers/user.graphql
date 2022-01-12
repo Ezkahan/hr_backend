@@ -1,6 +1,6 @@
 extend type Query {
-    users(orderBy: _ @orderBy(columns: ["id"])): [User!]! @paginate
-    user(id: ID @eq): User @find
+    users(orderBy: _ @orderBy(columns: ["id"])): [User!]! @paginate @guard
+    user(id: ID @eq): User @find @guard
 }
 
 type Mutation {

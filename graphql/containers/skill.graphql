@@ -1,5 +1,5 @@
 extend type Query {
-    skills(orderBy: _ @orderBy(columns: ["id"])): [Skill!]! @paginate
+    skills(orderBy: _ @orderBy(columns: ["id"])): [Skill!]! @paginate @guard
 }
 
 type Skill {

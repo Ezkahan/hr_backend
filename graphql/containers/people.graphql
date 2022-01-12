@@ -1,5 +1,5 @@
 extend type Query {
-    people(orderBy: _ @orderBy(columns: ["id"])): [People!]! @paginate
+    people(orderBy: _ @orderBy(columns: ["id"])): [People!]! @paginate @guard
 }
 
 type People {
