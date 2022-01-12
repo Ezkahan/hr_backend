@@ -22,6 +22,10 @@ extend type Mutation {
     searchCompany(name: String): Company
         @guard
         @field(resolver: "App\\GraphQL\\Mutations\\CompanyMutator@search")
+
+    deleteCompany(id: ID!): String
+        @guard
+        @field(resolver: "App\\GraphQL\\Mutations\\CompanyMutator@delete")
 }
 
 type Company {

@@ -3,6 +3,7 @@
 namespace App\GraphQL\Mutations;
 
 use App\Containers\AppSection\Company\Tasks\CreateCompanyTask;
+use App\Containers\AppSection\Company\Tasks\DeleteCompanyTask;
 
 class CompanyMutator
 {
@@ -36,5 +37,16 @@ class CompanyMutator
         $company = app(CreateCompanyTask::class)->run($data);
 
         return $company;
+    }
+
+    public function delete($root, $args)
+    {
+        if ($args['id']) {
+            app(DeleteCompanyTask::class)->run($args['id']);
+
+            return 'success deleted';
+        }
+
+        return 'error';
     }
 }
