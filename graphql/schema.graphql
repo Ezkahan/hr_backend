@@ -5,12 +5,11 @@ scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 scalar DateTime
     @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
 
+scalar JSON @scalar(class: "MLL\\GraphQLScalars\\JSON")
+
 #import containers/*.graphql
 
-# type User {
-#     id: ID!
-#     name: String!
-#     email: String!
-#     created_at: DateTime!
-#     updated_at: DateTime!
-# }
+type Translatable {
+    ru: String
+    en: String
+}

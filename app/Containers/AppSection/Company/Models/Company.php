@@ -39,6 +39,16 @@ class Company extends Model
         'updated_at',
     ];
 
+    public function getNameAttribute()
+    {
+        return $this->getTranslations('name');
+    }
+
+    public function getDescriptionAttribute()
+    {
+        return $this->getTranslations('description');
+    }
+
     /**
      * A resource key to be used in the serialized responses.
      */

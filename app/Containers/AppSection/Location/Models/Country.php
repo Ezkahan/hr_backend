@@ -26,6 +26,11 @@ class Country extends Model
         'updated_at',
     ];
 
+    public function getNameAttribute()
+    {
+        return $this->getTranslations('name');
+    }
+
     /**
      * A resource key to be used in the serialized responses.
      */

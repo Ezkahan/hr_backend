@@ -17,7 +17,23 @@ extend type Mutation {
         description_ru: String
         company_type_id: ID!
     ): Company
+        @guard
         @field(resolver: "App\\GraphQL\\Mutations\\CompanyMutator@create")
+
+    updateCompany(
+        id: ID!
+        name_en: String!
+        name_ru: String!
+        phone: String
+        fax: String
+        email: String
+        website: String
+        description_en: String
+        description_ru: String
+        company_type_id: ID!
+    ): Company
+        @guard
+        @field(resolver: "App\\GraphQL\\Mutations\\CompanyMutator@update")
 
     searchCompany(name: String): Company
         @guard
@@ -30,8 +46,8 @@ extend type Mutation {
 
 type Company {
     id: ID
-    name: String
-    description: String
+    name: Translatable
+    description: Translatable
     status: String
     phone: String
     fax: String
