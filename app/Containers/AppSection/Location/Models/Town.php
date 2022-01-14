@@ -38,4 +38,9 @@ class Town extends Model
     {
         return $this->belongsTo(Area::class);
     }
+
+    public function getNameAttribute()
+    {
+        return $this->getTranslations('name');
+    }
 }
