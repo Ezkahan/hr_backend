@@ -38,4 +38,9 @@ class Skill extends Model
     {
         return $this->belongsTo(SkillType::class);
     }
+
+    public function getNameAttribute()
+    {
+        return $this->getTranslations('name');
+    }
 }

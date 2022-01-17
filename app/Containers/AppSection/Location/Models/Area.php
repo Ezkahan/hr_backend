@@ -38,4 +38,9 @@ class Area extends Model
     {
         return $this->belongsTo(Country::class);
     }
+
+    public function getNameAttribute()
+    {
+        return $this->getTranslations('name');
+    }
 }

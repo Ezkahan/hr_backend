@@ -2,7 +2,7 @@ extend type Query {
     companies(orderBy: _ @orderBy(columns: ["id"])): [Company!]!
         @paginate
         @guard
-    company(id: ID @eq): Company @find @guard
+    company(id: ID! @eq): Company! @find @guard
 }
 
 extend type Mutation {

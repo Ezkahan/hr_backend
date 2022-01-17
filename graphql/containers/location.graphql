@@ -3,11 +3,16 @@ extend type Query {
         # name: String @where(operator: "like")
         orderBy: _ @orderBy(columns: ["id"])
     ): [Country!]! @paginate @guard
+    countryList(orderBy: _ @orderBy(columns: ["id"])): [Country!]! @all @guard
     areas(orderBy: _ @orderBy(columns: ["id"])): [Area!]! @paginate @guard
+    areaList(orderBy: _ @orderBy(columns: ["id"])): [Area!]! @all @guard
+    area(id: ID! @eq): Area! @find @guard
     towns(orderBy: _ @orderBy(columns: ["id"])): [Town!]! @paginate @guard
+    town(id: ID! @eq): Town! @find @guard
     addresses(orderBy: _ @orderBy(columns: ["id"])): [Address!]!
         @paginate
         @guard
+    address(id: ID! @eq): Address! @find @guard
 }
 
 extend type Mutation {
@@ -34,6 +39,23 @@ extend type Mutation {
     deleteTown(id: ID!): String
         @guard
         @field(resolver: "App\\GraphQL\\Mutations\\TownMutator@delete")
+
+    addArea(name_ru: String!, name_en: String!, country_id: ID!): Area
+        @guard
+        @field(resolver: "App\\GraphQL\\Mutations\\AreaMutator@store")
+
+    updateArea(
+        id: ID!
+        name_ru: String!
+        name_en: String!
+        country_id: ID!
+    ): Area
+        @guard
+        @field(resolver: "App\\GraphQL\\Mutations\\AreaMutator@update")
+
+    deleteArea(id: ID!): String
+        @guard
+        @field(resolver: "App\\GraphQL\\Mutations\\AreaMutator@delete")
 }
 
 type Country {
@@ -43,7 +65,7 @@ type Country {
 
 type Area {
     id: ID!
-    name: String!
+    name: Translatable!
     country: Country @belongsTo
 }
 

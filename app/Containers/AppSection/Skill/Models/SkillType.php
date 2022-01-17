@@ -33,4 +33,9 @@ class SkillType extends Model
      * A resource key to be used in the serialized responses.
      */
     protected string $resourceKey = 'SkillType';
+
+    public function getNameAttribute()
+    {
+        return $this->getTranslations('name');
+    }
 }

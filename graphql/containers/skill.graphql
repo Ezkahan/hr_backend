@@ -1,15 +1,35 @@
 extend type Query {
     skills(orderBy: _ @orderBy(columns: ["id"])): [Skill!]! @paginate @guard
+    skillTypes(orderBy: _ @orderBy(columns: ["id"])): [SkillType!]! @all @guard
+}
+
+extend type Mutation {
+    addSkill(name_ru: String!, name_en: String!, skill_type_id: ID!): Skill
+        @guard
+        @field(resolver: "App\\GraphQL\\Mutations\\SkillMutator@store")
+
+    updateSkill(
+        id: ID!
+        name_ru: String!
+        name_en: String!
+        skill_type_id: ID!
+    ): Skill
+        @guard
+        @field(resolver: "App\\GraphQL\\Mutations\\SkillMutator@update")
+
+    deleteSkill(id: ID!): String
+        @guard
+        @field(resolver: "App\\GraphQL\\Mutations\\SkillMutator@delete")
 }
 
 type Skill {
     id: ID!
-    name: String!
+    name: Translatable!
     skillType: SkillType @belongsTo
 }
 
 type SkillType {
     id: ID!
     code: String!
-    name: String!
+    name: Translatable!
 }

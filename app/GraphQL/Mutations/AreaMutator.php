@@ -2,11 +2,11 @@
 
 namespace App\GraphQL\Mutations;
 
-use App\Containers\AppSection\Location\Tasks\CreateTownTask;
-use App\Containers\AppSection\Location\Tasks\DeleteTownTask;
-use App\Containers\AppSection\Location\Tasks\UpdateTownTask;
+use App\Containers\AppSection\Location\Tasks\CreateAreaTask;
+use App\Containers\AppSection\Location\Tasks\UpdateAreaTask;
+use App\Containers\AppSection\Location\Tasks\DeleteAreaTask;
 
-class TownMutator
+class AreaMutator
 {
     /**
      * @param  null  $_
@@ -24,10 +24,10 @@ class TownMutator
                 'ru' => $args['name_ru'],
                 'en' => $args['name_en'],
             ],
-            'area_id' => $args['area_id'],
+            'country_id' => $args['country_id'],
         ];
 
-        $town = app(CreateTownTask::class)->run($data);
+        $town = app(CreateAreaTask::class)->run($data);
 
         return $town;
     }
@@ -40,10 +40,10 @@ class TownMutator
                 'ru' => $args['name_ru'],
                 'en' => $args['name_en'],
             ],
-            'area_id' => $args['area_id'],
+            'country_id' => $args['country_id'],
         ];
 
-        $country = app(UpdateTownTask::class)->run($args['id'], $data);
+        $country = app(UpdateAreaTask::class)->run($args['id'], $data);
 
         return $country;
     }
@@ -51,7 +51,7 @@ class TownMutator
     public function delete($root, array $args)
     {
         if ($args['id']) {
-            app(DeleteTownTask::class)->run($args['id']);
+            app(DeleteAreaTask::class)->run($args['id']);
 
             return 'success deleted';
         }
