@@ -3,9 +3,12 @@
 namespace App\Containers\AppSection\School\Models;
 
 use App\Ship\Parents\Models\Model;
+use Spatie\Translatable\HasTranslations;
 
 class School extends Model
 {
+    use HasTranslations;
+
     public $translatable = ['name'];
 
     protected $fillable = [
@@ -34,5 +37,10 @@ class School extends Model
     public function schoolType()
     {
         return $this->belongsTo(SchoolType::class);
+    }
+
+    public function getNameAttribute()
+    {
+        return $this->getTranslations('name');
     }
 }

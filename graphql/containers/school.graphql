@@ -1,14 +1,36 @@
 extend type Query {
     schools(orderBy: _ @orderBy(columns: ["id"])): [School!]! @paginate @guard
+    schoolTypes(orderBy: _ @orderBy(columns: ["id"])): [SchoolType!]!
+        @all
+        @guard
+}
+
+extend type Mutation {
+    addSchool(name_ru: String!, name_en: String!, school_type_id: ID!): School
+        @guard
+        @field(resolver: "App\\GraphQL\\Mutations\\SchoolMutator@store")
+
+    updateSchool(
+        id: ID!
+        name_ru: String!
+        name_en: String!
+        school_type_id: ID!
+    ): School
+        @guard
+        @field(resolver: "App\\GraphQL\\Mutations\\SchoolMutator@update")
+
+    deleteSchool(id: ID!): String
+        @guard
+        @field(resolver: "App\\GraphQL\\Mutations\\SchoolMutator@delete")
 }
 
 type School {
     id: ID
-    name: String
+    name: Translatable!
     schoolType: SchoolType!
 }
 
 type SchoolType {
     id: ID!
-    name: String!
+    name: Translatable!
 }
