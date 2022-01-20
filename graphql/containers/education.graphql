@@ -1,0 +1,55 @@
+extend type Query {
+    education(orderBy: _ @orderBy(columns: ["id"])): [Education!]!
+        @paginate
+        @guard
+    educationTypes(orderBy: _ @orderBy(columns: ["id"])): [EducationType!]!
+        @paginate
+        @guard
+}
+
+extend type Mutation {
+    addEducation(
+        name_ru: String!
+        name_en: String!
+        description_ru: String
+        description_en: String
+        country_id: ID!
+        begin: String!
+        end: String
+        education_type_id: ID!
+    ): Education
+        @guard
+        @field(resolver: "App\\GraphQL\\Mutations\\EducationMutator@store")
+
+    updateEducation(
+        name_ru: String!
+        name_en: String!
+        description_ru: String
+        description_en: String
+        country_id: ID!
+        begin: String!
+        end: String
+        education_type_id: ID!
+    ): Education
+        @guard
+        @field(resolver: "App\\GraphQL\\Mutations\\EducationMutator@update")
+
+    deleteEducation(id: ID!): String
+        @guard
+        @field(resolver: "App\\GraphQL\\Mutations\\EducationMutator@delete")
+}
+
+type Education {
+    id: ID!
+    name: Translatable
+    description: Translatable
+    country: Country
+    begin: String
+    end: String
+    educationType: EducationType
+}
+
+type EducationType {
+    id: ID!
+    name: Translatable!
+}

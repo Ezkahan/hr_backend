@@ -2,11 +2,11 @@
 
 namespace App\GraphQL\Mutations;
 
-use App\Containers\AppSection\Location\Tasks\CreateAreaTask;
-use App\Containers\AppSection\Location\Tasks\UpdateAreaTask;
-use App\Containers\AppSection\Location\Tasks\DeleteAreaTask;
+use App\Containers\AppSection\Location\Tasks\CreateEducationTask;
+use App\Containers\AppSection\Location\Tasks\UpdateEducationTask;
+use App\Containers\AppSection\Location\Tasks\DeleteEducationTask;
 
-class AreaMutator
+class EducationMutator
 {
     /**
      * @param  null  $_
@@ -24,12 +24,19 @@ class AreaMutator
                 'ru' => $args['name_ru'],
                 'en' => $args['name_en'],
             ],
+            'description' => [
+                'ru' => $args['description_ru'] ?? "",
+                'en' => $args['description_en'] ?? "",
+            ],
             'country_id' => $args['country_id'],
+            'begin' => $args['begin'],
+            'end' => $args['end'] ?? "",
+            'education_type_id' => $args['education_type_id'] ?? "",
         ];
 
-        $area = app(CreateAreaTask::class)->run($data);
+        $education = app(CreateEducationTask::class)->run($data);
 
-        return $area;
+        return $education;
     }
 
 
@@ -43,15 +50,15 @@ class AreaMutator
             'country_id' => $args['country_id'],
         ];
 
-        $area = app(UpdateAreaTask::class)->run($args['id'], $data);
+        $education = app(UpdateEducationTask::class)->run($args['id'], $data);
 
-        return $area;
+        return $education;
     }
 
     public function delete($root, array $args)
     {
         if ($args['id']) {
-            app(DeleteAreaTask::class)->run($args['id']);
+            app(DeleteEducationTask::class)->run($args['id']);
 
             return 'success deleted';
         }

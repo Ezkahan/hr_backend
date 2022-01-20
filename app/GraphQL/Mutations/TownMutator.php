@@ -43,9 +43,9 @@ class TownMutator
             'area_id' => $args['area_id'],
         ];
 
-        $country = app(UpdateTownTask::class)->run($args['id'], $data);
+        $town = app(UpdateTownTask::class)->run($args['id'], $data);
 
-        return $country;
+        return $town;
     }
 
     public function delete($root, array $args)

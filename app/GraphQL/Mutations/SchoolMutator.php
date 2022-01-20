@@ -27,9 +27,9 @@ class SchoolMutator
             'school_type_id' => $args['school_type_id'],
         ];
 
-        $town = app(CreateSchoolTask::class)->run($data);
+        $school = app(CreateSchoolTask::class)->run($data);
 
-        return $town;
+        return $school;
     }
 
 
@@ -43,9 +43,9 @@ class SchoolMutator
             'school_type_id' => $args['school_type_id'],
         ];
 
-        $country = app(UpdateSchoolTask::class)->run($args['id'], $data);
+        $school = app(UpdateSchoolTask::class)->run($args['id'], $data);
 
-        return $country;
+        return $school;
     }
 
     public function delete($root, array $args)

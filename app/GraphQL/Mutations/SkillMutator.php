@@ -27,9 +27,9 @@ class SkillMutator
             'skill_type_id' => $args['skill_type_id'],
         ];
 
-        $town = app(CreateSkillTask::class)->run($data);
+        $skill = app(CreateSkillTask::class)->run($data);
 
-        return $town;
+        return $skill;
     }
 
 
@@ -43,9 +43,9 @@ class SkillMutator
             'skill_type_id' => $args['skill_type_id'],
         ];
 
-        $country = app(UpdateSkillTask::class)->run($args['id'], $data);
+        $skill = app(UpdateSkillTask::class)->run($args['id'], $data);
 
-        return $country;
+        return $skill;
     }
 
     public function delete($root, array $args)

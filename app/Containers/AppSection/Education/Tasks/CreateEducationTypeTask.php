@@ -2,16 +2,16 @@
 
 namespace App\Containers\AppSection\Education\Tasks;
 
-use App\Containers\AppSection\Education\Data\Repositories\EducationRepository;
+use App\Containers\AppSection\Education\Data\Repositories\EducationTypeRepository;
 use App\Ship\Exceptions\CreateResourceFailedException;
 use App\Ship\Parents\Tasks\Task;
 use Exception;
 
-class CreateEducationTask extends Task
+class CreateEducationTypeTask extends Task
 {
-    protected EducationRepository $repository;
+    protected EducationTypeRepository $repository;
 
-    public function __construct(EducationRepository $repository)
+    public function __construct(EducationTypeRepository $repository)
     {
         $this->repository = $repository;
     }
@@ -20,7 +20,8 @@ class CreateEducationTask extends Task
     {
         try {
             return $this->repository->create($data);
-        } catch (Exception $exception) {
+        }
+        catch (Exception $exception) {
             throw new CreateResourceFailedException();
         }
     }
