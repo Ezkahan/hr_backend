@@ -2,6 +2,70 @@ extend type Query {
     people(orderBy: _ @orderBy(columns: ["id"])): [People!]! @paginate @guard
 }
 
+extend type Mutation {
+    addPerson(
+        firstname: String
+        lastname: String
+        patronymic: String
+        born_date: String
+        description_ru: String
+        description_en: String
+    ): People
+        @guard
+        @field(resolver: "App\\GraphQL\\Mutations\\PeopleMutator@store")
+
+    deletePerson(id: ID!): String
+        @guard
+        @field(resolver: "App\\GraphQL\\Mutations\\PeopleMutator@delete")
+}
+
 type People {
     id: ID!
+    firstname: String
+    lastname: String
+    patronymic: String
+    registered_at: String
+    passportSeries: PassportSeries
+    passport_no: String
+    passport_issue_date: String
+    passportIssuedBy: PassportIssuedBy
+    passport_comment: String
+    born_date: String
+    educationType: EducationType
+    marital: String
+    children: String
+    driver_classes: String
+    military: Boolean
+    sentence: Boolean
+    dead: Boolean
+    gender: Int
+    relocation: Int
+    shift: Int
+    dontdisturb: Int
+    dontdisturb_notes: String
+    vip: Int
+    vip_notes: String
+    blacklist: Int
+    blacklist_notes: String
+    status_comment: String
+    hascar: Int
+    nationality: Nationality
+    min_salary: String
+    salary_currency: Int
+    description: Translatable
+    email: String
+    phone: String
+    status: Boolean
+}
+
+type PassportSeries {
+    name: String
+}
+
+type PassportIssuedBy {
+    name: String
+}
+
+type Nationality {
+    name: Translatable
 }

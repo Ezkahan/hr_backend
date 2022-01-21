@@ -2,16 +2,16 @@
 
 namespace App\Containers\AppSection\People\Tasks;
 
-use App\Containers\AppSection\People\Data\Repositories\PeopleRepository;
+use App\Containers\AppSection\People\Data\Repositories\NationalityRepository;
 use App\Ship\Exceptions\CreateResourceFailedException;
 use App\Ship\Parents\Tasks\Task;
 use Exception;
 
-class CreatePeopleTask extends Task
+class CreateNationalityTask extends Task
 {
-    protected PeopleRepository $repository;
+    protected NationalityRepository $repository;
 
-    public function __construct(PeopleRepository $repository)
+    public function __construct(NationalityRepository $repository)
     {
         $this->repository = $repository;
     }
