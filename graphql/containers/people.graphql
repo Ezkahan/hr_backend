@@ -1,5 +1,16 @@
 extend type Query {
-    people(orderBy: _ @orderBy(columns: ["id"])): [People!]! @paginate @guard
+    people(
+        search: String @scope
+        orderBy: _ @orderBy(columns: ["id"])
+    ): [People!]! @paginate @guard
+
+    person(id: ID! @eq): People @find @guard
+    passportSeries: [PassportSeries] @all @guard
+    passportIssuedBy(
+        search: String @scope
+        orderBy: _ @orderBy(columns: ["id"])
+    ): [PassportIssuedBy] @paginate @guard
+    nationality: [Nationality] @all @guard
 }
 
 extend type Mutation {
@@ -14,9 +25,47 @@ extend type Mutation {
         @guard
         @field(resolver: "App\\GraphQL\\Mutations\\PeopleMutator@store")
 
+    updatePerson(
+        id: ID!
+        firstname: String
+        lastname: String
+        patronymic: String
+        born_date: String
+        nationality_id: ID
+        passport_series_id: ID
+        passport_no: String
+        passport_issue_date: String
+        passport_issued_by_id: ID
+        passport_comment: String
+        gender: String
+        marital: String
+        children: String
+        military: Int
+        sentence: Int
+        dead: Int
+        relocation: Int
+        shift: Int
+        dontdisturb: Int
+        dontdisturb_notes: String
+        vip: Int
+        vip_notes: String
+        blacklist: Int
+        blacklist_notes: String
+        min_salary: String
+        salary_currency: String
+        description_ru: String
+        description_en: String
+    ): People
+        @guard
+        @field(resolver: "App\\GraphQL\\Mutations\\PeopleMutator@update")
+
     deletePerson(id: ID!): String
         @guard
         @field(resolver: "App\\GraphQL\\Mutations\\PeopleMutator@delete")
+
+    addPersonSkill(people_id: ID!, skill_id: ID!, level: String!): PersonSkill
+        @guard
+        @field(resolver: "App\\GraphQL\\Mutations\\PeopleMutator@addSkill")
 }
 
 type People {
@@ -35,10 +84,10 @@ type People {
     marital: String
     children: String
     driver_classes: String
-    military: Boolean
-    sentence: Boolean
-    dead: Boolean
-    gender: Int
+    military: Int
+    sentence: Int
+    dead: Int
+    gender: String
     relocation: Int
     shift: Int
     dontdisturb: Int
@@ -51,21 +100,33 @@ type People {
     hascar: Int
     nationality: Nationality
     min_salary: String
-    salary_currency: Int
+    salary_currency: String
     description: Translatable
     email: String
     phone: String
     status: Boolean
+    created_at: String
+    updated_at: String
+    skills: [Skill] @belongsToMany
 }
 
 type PassportSeries {
+    id: ID!
     name: String
 }
 
 type PassportIssuedBy {
+    id: ID!
     name: String
 }
 
 type Nationality {
+    id: ID!
     name: Translatable
+}
+
+type PersonSkill {
+    people_id: ID!
+    skill_id: ID!
+    level: String
 }

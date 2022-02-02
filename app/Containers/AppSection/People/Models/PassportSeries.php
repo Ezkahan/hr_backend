@@ -3,6 +3,7 @@
 namespace App\Containers\AppSection\People\Models;
 
 use App\Ship\Parents\Models\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class PassportSeries extends Model
 {

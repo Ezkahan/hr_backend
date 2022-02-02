@@ -1,5 +1,8 @@
 extend type Query {
-    skills(orderBy: _ @orderBy(columns: ["id"])): [Skill!]! @paginate @guard
+    skills(
+        search: String @scope
+        orderBy: _ @orderBy(columns: ["id"])
+    ): [Skill!]! @paginate @guard
     skillTypes(orderBy: _ @orderBy(columns: ["id"])): [SkillType!]! @all @guard
 }
 
@@ -23,8 +26,9 @@ extend type Mutation {
 }
 
 type Skill {
-    id: ID!
-    name: Translatable!
+    id: ID
+    name: Translatable
+    pivot: PersonSkill
     skillType: SkillType @belongsTo
 }
 

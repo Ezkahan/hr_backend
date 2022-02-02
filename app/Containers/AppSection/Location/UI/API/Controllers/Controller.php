@@ -32,8 +32,8 @@ class Controller extends ApiController
 
     public function getAllLocations(GetAllLocationsRequest $request): array
     {
-        $locations = app(GetAllLocationsAction::class)->run($request);
-        return $this->transform($locations, LocationTransformer::class);
+        $location = app(GetAllLocationsAction::class)->run($request);
+        return $this->transform($location, LocationTransformer::class);
     }
 
     public function updateLocation(UpdateLocationRequest $request): array

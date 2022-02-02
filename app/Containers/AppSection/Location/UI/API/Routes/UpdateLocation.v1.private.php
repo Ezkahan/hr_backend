@@ -4,7 +4,7 @@
  * @apiGroup           Location
  * @apiName            updateLocation
  *
- * @api                {PATCH} /v1/locations/:id Endpoint title here..
+ * @api                {PATCH} /v1/location/:id Endpoint title here..
  * @apiDescription     Endpoint description here..
  *
  * @apiVersion         1.0.0
@@ -22,7 +22,6 @@
 use App\Containers\AppSection\Location\UI\API\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 
-Route::patch('locations/{id}', [Controller::class, 'updateLocation'])
-    ->name('api_location_update_location')
-    ->middleware(['auth:api']);
-
+Route::patch('location/{id}', [Controller::class, 'updateLocation'])
+  ->name('api_location_update_location')
+  ->middleware(['auth:api']);

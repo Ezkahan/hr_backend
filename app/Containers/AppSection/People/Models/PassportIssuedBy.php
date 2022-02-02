@@ -3,6 +3,7 @@
 namespace App\Containers\AppSection\People\Models;
 
 use App\Ship\Parents\Models\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class PassportIssuedBy extends Model
 {
@@ -27,4 +28,9 @@ class PassportIssuedBy extends Model
      * A resource key to be used in the serialized responses.
      */
     protected string $resourceKey = 'PassportIssuedBy';
+
+    public function scopeSearch(Builder $builder, string $search): Builder
+    {
+        return $builder->where('name', 'LIKE', '%' . $search . '%');
+    }
 }

@@ -4,7 +4,7 @@
  * @apiGroup           Location
  * @apiName            deleteLocation
  *
- * @api                {DELETE} /v1/locations/:id Endpoint title here..
+ * @api                {DELETE} /v1/location/:id Endpoint title here..
  * @apiDescription     Endpoint description here..
  *
  * @apiVersion         1.0.0
@@ -22,7 +22,6 @@
 use App\Containers\AppSection\Location\UI\API\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 
-Route::delete('locations/{id}', [Controller::class, 'deleteLocation'])
-    ->name('api_location_delete_location')
-    ->middleware(['auth:api']);
-
+Route::delete('location/{id}', [Controller::class, 'deleteLocation'])
+  ->name('api_location_delete_location')
+  ->middleware(['auth:api']);

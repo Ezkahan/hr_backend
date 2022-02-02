@@ -3,6 +3,7 @@
 namespace App\Containers\AppSection\Skill\Models;
 
 use App\Ship\Parents\Models\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Spatie\Translatable\HasTranslations;
 
 class Skill extends Model
@@ -42,5 +43,10 @@ class Skill extends Model
     public function getNameAttribute()
     {
         return $this->getTranslations('name');
+    }
+
+    public function scopeSearch(Builder $builder, string $search): Builder
+    {
+        return $builder->where('name->ru', 'LIKE', '%' . $search . '%')->orWhere('name->en', 'LIKE', '%' . $search . '%');
     }
 }
